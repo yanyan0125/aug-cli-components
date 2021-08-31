@@ -1,18 +1,25 @@
 {
   "name": "aug-cli-lib",
-  "version": "1.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "main": "dist/aug-cli-lib.umd.js",
   "module": "dist/aug-cli-lib.esm.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:esm && npm run build:umd",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
+    "test:watch": "vue-cli-service test:unit --watch",
+    "test": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint --max-warnnings 5",
     "build:esm": "rollup --config build/rollup.esm.config.js",
     "build:umd": "rollup --config build/rollup.umd.config.js",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -38,6 +45,7 @@
     "@vue/test-utils": "^2.0.0-0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "husky": "^4.3.8",
     "rimraf": "^3.0.2",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-typescript2": "^0.30.0",
