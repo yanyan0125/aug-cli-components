@@ -1,6 +1,6 @@
 {
   "name": "aug-cli-lib",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
   "main": "dist/aug-cli-lib.umd.js",
   "module": "dist/aug-cli-lib.esm.js",
